@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('kolams', function (Blueprint $table) {
-            $table->ulid();
+            $table->ulid('id')->primary();
             $table->string('nama_kolam');
             $table->float('kapasitas_air');
             $table->float('luas_kolam');

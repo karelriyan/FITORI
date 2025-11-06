@@ -7,6 +7,8 @@ use Filament\Actions\DeleteAction;
 use Filament\Actions\ForceDeleteAction;
 use Filament\Actions\RestoreAction;
 use Filament\Resources\Pages\EditRecord;
+use App\Filament\Resources\Kolams\RelationManagers\AlatRelationManager;
+use App\Filament\Resources\Kolams\RelationManagers\IkanRelationManager;
 
 class EditKolam extends EditRecord
 {
@@ -18,6 +20,14 @@ class EditKolam extends EditRecord
             DeleteAction::make(),
             ForceDeleteAction::make(),
             RestoreAction::make(),
+        ];
+    }
+
+    public static function getRelations(): array
+    {
+        return [
+            AlatRelationManager::class,
+            IkanRelationManager::class,
         ];
     }
 }

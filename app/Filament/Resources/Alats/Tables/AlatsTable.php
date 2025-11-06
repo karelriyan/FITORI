@@ -1,30 +1,33 @@
 <?php
 
-namespace App\Filament\Resources\Kolams\Tables;
+namespace App\Filament\Resources\Alats\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class KolamsTable
+class AlatsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('nama_kolam')
-                    ->label('Nama Kolam')
+                TextColumn::make('nama_alat')
+                    ->label('Nama Alat')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('kapasitas_air')
-                    ->label('Kapasitas Air')
+                TextColumn::make('jenis_alat')
+                    ->label('Jenis Alat')
                     ->sortable(),
-                TextColumn::make('luas_kolam')
-                    ->label('Luas Kolam')
+                TextColumn::make('status')
+                    ->label('Status')
                     ->sortable(),
+                TextColumn::make('Kolam.nama_kolam')
+                    ->label('Kolam')
+                    ->sortable()
+                    ->searchable(),
                 TextColumn::make('created_at')
                     ->label('Dibuat')
                     ->dateTime()
@@ -32,7 +35,6 @@ class KolamsTable
             ])
             ->recordActions([
                 EditAction::make(),
-                DeleteAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

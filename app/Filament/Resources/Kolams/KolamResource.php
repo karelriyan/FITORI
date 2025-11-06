@@ -5,23 +5,32 @@ namespace App\Filament\Resources\Kolams;
 use App\Filament\Resources\Kolams\Pages\CreateKolam;
 use App\Filament\Resources\Kolams\Pages\EditKolam;
 use App\Filament\Resources\Kolams\Pages\ListKolams;
+use App\Filament\Resources\Kolams\RelationManagers\AlatRelationManager;
+use App\Filament\Resources\Kolams\RelationManagers\IkanRelationManager;
 use App\Filament\Resources\Kolams\Schemas\KolamForm;
 use App\Filament\Resources\Kolams\Tables\KolamsTable;
+use App\Models\Kolam;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Kolam;
+
 
 class KolamResource extends Resource
 {
     protected static ?string $model = Kolam::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static BackedEnum|string|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Kolam';
+    protected static ?string $recordTitleAttribute = 'nama_kolam';
+
+    protected static ?string $navigationLabel = 'Daftar Kolam';
+
+    protected static UnitEnum|string|null $navigationGroup = 'Manajemen Akuakultur';
+
+    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {
@@ -36,7 +45,8 @@ class KolamResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AlatRelationManager::class,
+            IkanRelationManager::class,
         ];
     }
 
@@ -49,8 +59,5 @@ class KolamResource extends Resource
         ];
     }
 
-    public static function getRecordRouteBindingEloquentQuery(): Builder
-    {
-        //
-    }
+    // No custom record route binding needed for this resource.
 }
